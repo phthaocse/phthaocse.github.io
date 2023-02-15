@@ -3,6 +3,8 @@ date: 2022-04-02 17:35
 layout: post
 description: Concurrency Problems - Race condition 
 tags: Vietnamese, golang, race-condition, concurrency, thao-posts
+categories: [Technology]
+
 ---
 # Race condition là gì ?
 

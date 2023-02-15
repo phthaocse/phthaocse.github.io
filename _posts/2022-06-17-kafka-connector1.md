@@ -3,6 +3,7 @@ date: 2022-06-17 17:35
 layout: post
 description: Trong các hệ thống hiện đại ngày nay, khi dữ liệu và dữ liệu là vô hạn thì việc xây dựng hệ thống truyền tải và chuyển hoá dữ liệu đóng vai trò rất quan trọng.
 tags: Kafka, Kafka-Connect, data-pipeline, Vietnamese, thao-posts
+categories: [Technology]
 ---
 # Xây dựng data pipeline với Kafka connector - Phần 1: Data Pipeline
 
