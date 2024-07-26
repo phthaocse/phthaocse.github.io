@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Thao Phan Posts/posts/2022-04-02-race-condition/</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/terminal-0.7.2.min.css">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/animate-4.1.1.min.css">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/console.css">
+    
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <meta property="og:title" content="" />
+<meta property="og:description" content="Concurrency Problems - Race condition" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/2022-04-02-race-condition/" />
+
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Concurrency Problems - Race condition"/>
+
+  
+
+
+</head>
+<body class="terminal">
+    <div class="container">
+        <div class="terminal-nav">
+          <header class="terminal-logo">
+            <div class="logo terminal-prompt">
+              
+              
+              <a href="http://localhost:1313/" class="no-style ">Thao Phan Posts</a>:~# 
+              <a href='http://localhost:1313/posts'>posts</a>/<a href='http://localhost:1313/posts/2022-04-02-race-condition'>2022-04-02-race-condition</a>/</div></header>
+          <nav class="terminal-menu">
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+            </ul>
+          </nav>
+        </div>
+    </div>
+
+    <div class="container " >
+        
+<h1></h1>
+
+Jan. 1, 0001
+
+
+<br/><br/>
+<h1 id="race-condition-là-gì-">Race condition là gì ?</h1>
+<h2 id="định-nghĩa">Định nghĩa</h2>
+<p>Race condition là tình huống một hay nhiều thread cùng cố gắng thay đổi giá trị của một biến trong vùng nhớ chung (shared memory) tại cùng một thời điểm, kết quả của việc thực thi phụ thuộc vào thứ tự cụ thể mà việc truy cập diễn ra, và thứ tự truy cập đó ta không thể kiểm soát. Điều này có thể dẫn đến kết quả không mong muốn của toàn bộ quá trình.</p>
+<h2 id="ví-dụ">Ví dụ</h2>
+<p>Để hiểu rõ về vấn đề này mình đã viết một chương trình minh họa race condition bằng Go, mình sẽ dùng một khái niệm gần tương tự thread ở level OS để minh họa đó là <a href="https://go.dev/tour/concurrency/1">Gorountine</a> - lightweight thread được cung cấp bởi Go. Trong ví dụ này chúng ta sẽ mô phỏng việc &ldquo;Thêm vào giả hàng&rdquo; ở các trang thương mại điện tử, giả sử có một mặt hàng X hiện đang còn 1000 sản phẩm trong kho, tại thời điểm mở bán, 1000 khách hàng đồng thời thêm sản phẩm đó vào giỏ hàng. Sau đó ta sẽ kiểm tra xem liệu số lượng tồn kho sau khi 1000 khách hàng đã thêm vào giỏ có đúng bằng 0 theo đúng lý thuyết. Chúng ta sẽ mô phỏng 1000 request thêm vào giỏ hàng bằng việc tạo ra 1000 Gorountines và nhiệm vụ của mỗi Goroutine là giảm số lượng <code>stock</code> đi 1 đơn vị, <code>stock</code> ở đây sẽ global variable và được sử dụng chung bởi tất cả Gorountine như điều kiện đã đặt ra.</p>
+<h3 id="tiến-hành">Tiến hành</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">stock</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">add_to_cart</span>(<span style="color:#a6e22e">w</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Done</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">stock</span><span style="color:#f92672">--</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">w</span> <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">1000</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">add_to_cart</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">w</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Wait</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Current stock: &#34;</span>, <span style="color:#a6e22e">stock</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Trong đoạn code trên mình có sử dụng một số utilities của <code>sync</code> package để giúp cho việc mô phỏng diễn ra chính xác. Vì hàm main (entry point của bất kỳ application nào trong Go) cũng là một Gorountine và một khi nó kết thúc thì tất cả các Gorountine khác cũng bị drop nên <code>w.Wait()</code> xuất hiện ở đây đề giúp cho <code>main</code> chờ các Gorountine khác kết thúc trước khi nó kết thúc. <code>w.Add()</code> được gọi trong main Goroutine để thêm vào số lượng Goroutine mà nó cần chờ, ở đây là 1000 Goroutines. Sau khi hoàn thành công việc thì Goroutine sẽ signal cho main Gorountine bằng việc gọi hàm <code>w.Done()</code> mà ta có thể thấy trong <code>add_to_cart</code> qua câu lệnh <code>defer w.Done()</code>, <a href="https://go.dev/tour/flowcontrol/12">defer</a> là một keyword trong Go dùng để nói với hàm sở hữu nó thực hiện câu lệnh ngay sau keyword <code>defer</code> tại thời điểm kết thúc.</p>
+<h3 id="kết-quả-và-giải-thích">Kết quả và giải thích</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>Current stock:  <span style="color:#ae81ff">93</span>
+</span></span><span style="display:flex;"><span>Current stock:  <span style="color:#ae81ff">32</span>
+</span></span><span style="display:flex;"><span>Current stock:  <span style="color:#ae81ff">114</span>
+</span></span><span style="display:flex;"><span>Current stock:  <span style="color:#ae81ff">22</span>
+</span></span><span style="display:flex;"><span>Current stock:  <span style="color:#ae81ff">6</span>
+</span></span></code></pre></div><p>Sau khi tiến hành thực thi chương trình ở trên 5 lần chúng ta nhận được 5 kết quả khác nhau và không có kết quả nào đúng như kết quả mà ta mong muốn là số lượng stock còn lại là 0. Vậy tại sao kết quả lại như vậy ?</p>
+<p>Trong phần định nghĩa có nói kết quả của quá trình thực thi sẽ phụ thuộc vào thứ tự mà việc truy cập vào vùng nhớ chung diễn ra. Ta cần biết rằng các Gorountine sẽ được thực thi theo một thứ tự mà ta không thể kiểm soát, mà nó được quyết định bởi runtime scheduler của Go cũng tương tư thread ở level OS  sẽ được quyết định bởi OS scheduler. Việc này dẫn tới tại một thời điểm các Goruntine được thực thi cùng lúc với nhau dẫn đến việc biến <code>stock</code> được truy cập cùng lúc. Đây cũng là nguyên nhân dẫn tới việc biến <code>stock</code> bị tính toán sai mà ở đây một cách chi tiết là qua câu lệnh <code>stock--</code>. Vậy ta cùng nhìn sâu hơn ở low-level cuả câu lệnh <code>stock--</code>, ở mức độ ngôn ngữ máy, nó được thực hiện như sau</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>register <span style="color:#f92672">=</span> stock
+</span></span><span style="display:flex;"><span>register <span style="color:#f92672">=</span> register - <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>stock <span style="color:#f92672">=</span> register
+</span></span></code></pre></div><p>Giá trị từ biến <code>stock</code> sẽ được đọc và ghi xuống thanh ghi, sau đó tiến hành tính toán bởi CPU và được ghi lại vào biến <code>stock</code>. Điều này dẫn đến việc khi hai hay nhiều truy cập đồng thời vào biến stock thì giá trị tương ứng của <code>stock</code> sẽ được ghi vào nhiều thanh ghi khác nhau với cùng một giá trị, vì thế làm cho giá trị của <code>stock</code> bị tính toán sai. Ví dụ ta có 3 Gorountines cùng truy cập vùng nhớ của <code>stock</code> và thực thi phép toán, thì lúc này giá trị của <code>stock</code> thay vì cần giảm 3 đơn vị thì nó chỉ giảm 1.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>Goroutine1: stock-- <span style="color:#f92672">=</span>&gt;  register1 <span style="color:#f92672">=</span> stock <span style="color:#f92672">(</span>stock<span style="color:#f92672">=</span>1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                        register1 <span style="color:#f92672">=</span> register1 - <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                        stock <span style="color:#f92672">=</span> register1 <span style="color:#f92672">(</span>stock <span style="color:#f92672">=</span> 0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Goroutine2: stock-- <span style="color:#f92672">=</span>&gt;  register2 <span style="color:#f92672">=</span> stock <span style="color:#f92672">(</span>stock<span style="color:#f92672">=</span>1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                        register2 <span style="color:#f92672">=</span> register2 - <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                        stock <span style="color:#f92672">=</span> register2 <span style="color:#f92672">(</span>stock <span style="color:#f92672">=</span> 0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Goroutine3: stock-- <span style="color:#f92672">=</span>&gt;  register3 <span style="color:#f92672">=</span> stock <span style="color:#f92672">(</span>stock<span style="color:#f92672">=</span>1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                        register3 <span style="color:#f92672">=</span> register3 - <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                        stock <span style="color:#f92672">=</span> register3 <span style="color:#f92672">(</span>stock <span style="color:#f92672">=</span> 0<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Đó là những gì bên dưới đã xảy ra và những điều này chúng ta sẽ không thể thấy được ở high level tức là trên những dòng code mà ta viết nên một khi gặp phải thì việc debug sẽ trở nên rất khó khăn. Và qua ví dụ ta cũng thấy vấn đề xảy ra do việc có nhiều process cùng truy cập vào một vùng một cách đồng thời đã được đề cập trong phần định nghĩa. Từ đây ta cũng biết cách để phòng tránh race condition bằng việc can thiệp để các process không được cùng truy cập vào cùng một vùng nhớ chung tại một thời điểm nhất định.</p>
+<h3 id="giải-pháp">Giải pháp</h3>
+<p>Mời mọi người đón xem ở trong <a href="https://hung-m-dao.github.io/thao/race-condition-solution/">phần tiếp theo</a></p>
+<h3 id="read-more">Read more</h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Race_condition">Race condition</a></li>
+<li><a href="https://codex.cs.yale.edu/avi/os-book/OS10/practice-exercises/index-solu.html">Chapter 6 - Operating System Concepts by Abraham Silberschatz, Peter B. Galvin, Greg Gagne</a></li>
+</ul>
+
+
+
+        <div class="footer">
+    Powered by <a href="https://gohugo.io/">Hugo</a> with
+    <a href="https://github.com/mrmierzejewski/hugo-theme-console/">Console Theme</a>. 
+</div>
+
+    </div>
+  </body>
+</html>

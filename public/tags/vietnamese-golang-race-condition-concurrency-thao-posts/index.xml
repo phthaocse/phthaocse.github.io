@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vietnamese, Golang, Race-Condition, Concurrency, Thao-Posts on Thao Phan Posts</title>
+    <link>http://localhost:1313/tags/vietnamese-golang-race-condition-concurrency-thao-posts/</link>
+    <description>Recent content in Vietnamese, Golang, Race-Condition, Concurrency, Thao-Posts on Thao Phan Posts</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/tags/vietnamese-golang-race-condition-concurrency-thao-posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/posts/2022-04-02-race-condition/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2022-04-02-race-condition/</guid>
+      <description>Race condition là gì ? Định nghĩa Race condition là tình huống một hay nhiều thread cùng cố gắng thay đổi giá trị của một biến trong vùng nhớ chung (shared memory) tại cùng một thời điểm, kết quả của việc thực thi phụ thuộc vào thứ tự cụ thể mà việc truy cập diễn ra, và thứ tự truy cập đó ta không thể kiểm soát. Điều này có thể dẫn đến kết quả không mong muốn của toàn bộ quá trình.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/</loc>
+            <lastmod>2024-07-26T11:30:45+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/</loc>
+            <lastmod>2024-07-26T11:30:45+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/2022-03-23-cap/</loc>
+            <lastmod>2022-03-23T12:00:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/categories/</loc>
+            <lastmod>2022-03-23T12:00:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/distributed-system/</loc>
+            <lastmod>2022-03-23T12:00:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/</loc>
+            <lastmod>2022-03-23T12:00:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/categories/technology/</loc>
+            <lastmod>2022-03-23T12:00:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/vietnamese/</loc>
+            <lastmod>2022-03-23T12:00:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/2022-03-24-go-interface/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/2022-04-02-race-condition/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/2022-04-05-go-select/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/2022-06-17-kafka-connector1/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/2022-01-01-categories/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/kafka-kafka-connect-data-pipeline-vietnamese-thao-posts/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/categories/stock/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/vietnamese-golang-interface-duck-typing-thao-posts/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/vietnamese-golang-race-condition-concurrency-thao-posts/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/vietnamese-golang-select-concurrency-thao-posts/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/2022-02-15-volume/</loc>
+        </url>
+        
+    
+</urlset>

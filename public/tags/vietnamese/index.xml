@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vietnamese on Thao Phan Posts</title>
+    <link>http://localhost:1313/tags/vietnamese/</link>
+    <description>Recent content in Vietnamese on Thao Phan Posts</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 23 Mar 2022 12:00:00 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/vietnamese/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CAP theorem</title>
+      <link>http://localhost:1313/posts/2022-03-23-cap/</link>
+      <pubDate>Wed, 23 Mar 2022 12:00:00 +0700</pubDate>
+      <guid>http://localhost:1313/posts/2022-03-23-cap/</guid>
+      <description>test</description>
+    </item>
+  </channel>
+</rss>

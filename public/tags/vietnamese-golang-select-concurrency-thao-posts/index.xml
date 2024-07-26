@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vietnamese, Golang, Select, Concurrency, Thao-Posts on Thao Phan Posts</title>
+    <link>http://localhost:1313/tags/vietnamese-golang-select-concurrency-thao-posts/</link>
+    <description>Recent content in Vietnamese, Golang, Select, Concurrency, Thao-Posts on Thao Phan Posts</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/tags/vietnamese-golang-select-concurrency-thao-posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/posts/2022-04-05-go-select/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2022-04-05-go-select/</guid>
+      <description>Go Concurrency - Select Statement Câu lệnh select trong Go có thể được xem là một trong những câu lệnh quan trọng mà Gopher cần phải nắm rõ khi làm việc với concurrency programing. Nó được xem như chất kết dính gắn kết các channel lại với nhau, đồng thời từ đó kiểm soát và giải quyết những vấn đề phổ biến trong mô hình concurrency của Go.&#xA;1. Select statement là gì ?</description>
+    </item>
+  </channel>
+</rss>

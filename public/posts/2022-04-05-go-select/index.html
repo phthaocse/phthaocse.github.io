@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Thao Phan Posts/posts/2022-04-05-go-select/</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/terminal-0.7.2.min.css">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/animate-4.1.1.min.css">
+    <link rel="stylesheet" href="http://localhost:1313/hugo-theme-console/css/console.css">
+    
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <meta property="og:title" content="" />
+<meta property="og:description" content="Go Concurrency - Select statement" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/2022-04-05-go-select/" />
+
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Go Concurrency - Select statement"/>
+
+  
+
+
+</head>
+<body class="terminal">
+    <div class="container">
+        <div class="terminal-nav">
+          <header class="terminal-logo">
+            <div class="logo terminal-prompt">
+              
+              
+              <a href="http://localhost:1313/" class="no-style ">Thao Phan Posts</a>:~# 
+              <a href='http://localhost:1313/posts'>posts</a>/<a href='http://localhost:1313/posts/2022-04-05-go-select'>2022-04-05-go-select</a>/</div></header>
+          <nav class="terminal-menu">
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+            </ul>
+          </nav>
+        </div>
+    </div>
+
+    <div class="container " >
+        
+<h1></h1>
+
+Jan. 1, 0001
+
+
+<br/><br/>
+<h1 id="go-concurrency---select-statement">Go Concurrency - Select Statement</h1>
+<p>Câu lệnh <code>select</code> trong Go có thể được xem là một trong những câu lệnh quan trọng mà Gopher cần phải nắm rõ khi làm việc với concurrency programing. Nó được xem như chất kết dính gắn kết các channel lại với nhau, đồng thời từ đó kiểm soát và giải quyết những vấn đề phổ biến trong mô hình concurrency của Go.</p>
+<h2 id="1-select-statement-là-gì--what">1. Select statement là gì ? (WHAT)</h2>
+<p>Câu lệnh select là một control structure dùng để lựa chọn hoạt động tại một thời điểm nhất định trong một tập các hoạt động &ldquo;gửi (send)&rdquo; và &ldquo;nhận (recieve)&rdquo; có thể xảy ra, để từ đó tiếp tục thực hiện các công việc kế tiếp dựa trên hoạt động được chọn. Về mặt cấu trúc thì <code>select statement</code> gần tương tự như <code>switch statement</code> (mọi người có thể tham khảo thêm specification của <code>select statement</code> <a href="https://go.dev/ref/spec#Select_statements">tại đây</a>)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">c1</span>, <span style="color:#a6e22e">c2</span> <span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">interface</span>{}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">c3</span> <span style="color:#66d9ef">chan</span><span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">interface</span>{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c1</span>:
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">// Do something
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">case</span> <span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c2</span>:
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">// Do something with s
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">case</span> <span style="color:#a6e22e">c3</span> <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">struct</span>{}{}:
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">// Do something
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h2 id="2-tại-sao-cần-select--why">2. Tại sao cần select ? (WHY)</h2>
+<p>Để hiểu lý do ta cùng xem xét ví dụ sau đây</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">TARGET_COUNT</span> = <span style="color:#75715e">//fill this
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">wait</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Duration</span>(<span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#ae81ff">30</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">chan1</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">chan2</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">count1</span>, <span style="color:#a6e22e">count2</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">wait</span>()
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">count1</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">count1</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">TARGET_COUNT</span> {
+</span></span><span style="display:flex;"><span>				close(<span style="color:#a6e22e">ch</span>)
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}(<span style="color:#a6e22e">chan1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">wait</span>()
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">count2</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">count2</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">TARGET_COUNT</span> {
+</span></span><span style="display:flex;"><span>				close(<span style="color:#a6e22e">ch</span>)
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}(<span style="color:#a6e22e">chan2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// without select
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">chan1</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">chan2</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">count1</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">TARGET_COUNT</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">count2</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">TARGET_COUNT</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">count1</span>, <span style="color:#a6e22e">count2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Trong ví dụ trên minh đã sử dụng hàm <code>main</code> một web server đang gọi request tới 2 service khác nhau trong hệ thống để lấy data bằng việc sử dụng 2 Goroutine và 2 unbuffered channel tương ứng. Do để giống với request thật nên mình đã dùng hàm <code>wait()</code> tương ứng với việc mỗi request cần tốn thời gian để xử lý I/O mà ở đây thời gian sẽ được random với mỗi requets trong khoảng từ 1 đến 30 miliseconds. Chương trình sẽ kết thúc khi tất cả request (được đặc tả bằng <code>TARGET_COUNT</code>) được cả hai Gorountine handle xong, một điều quan trọng trong ví dụ trên mình không dùng <code>select</code> để handle việc đọc dữ liệu ở các channel. Vậy nếu dùng select thì nó sẽ ra sao ?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// with select
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">count1</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">TARGET_COUNT</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">count2</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">TARGET_COUNT</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">select</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">chan1</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">chan2</span>:
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre></div><p>Và sau khi chạy chương trình trên thì ta được thời gian thực thi tương ứng cho việc không dùng và có dùng <code>select</code> như sau</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>Req<span style="color:#f92672">(</span>TARGET_COUNT<span style="color:#f92672">)</span>   with_select     without_select 
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10000</span> 			    2m39.559101617s	3m4.613266231s 
+</span></span><span style="display:flex;"><span>10000			    2m39.482978441s	3m4.713822436s	
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">20000</span>               5m19.559837128s 6m10.476351502s
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">20000</span>               5m19.615773995s 6m10.342784533s
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">30000</span>               8m1.715319027s  9m17.175114517s
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">30000</span>               8m1.257952793s  9m17.100923682s
+</span></span></code></pre></div><p>Ở đây mình cho chương handle số lượng request lầ lượt là 10000, 20000, 30000 cho mỗi lần chạy và chạy 2 lần cho mỗi số lượng request để tránh sai số . Kết quả ở trên được chạy trên máy tính linux với CPU Intel® Core™ i5-6500 CPU @ 3.20GHz × 4, nên lưu ý kết quả khi chạy ở các thiết bị với vi xử lý khác có thể sẽ có kết quả khác. Qua kết quả trên ta có thể thấy việc sử dụng select giúp cho việc xử lý request nhanh hơn hẳn với việc không sử dụng. Ở trên các bạn có thể thấy chỉ có 2 channel và thời gian I/O cũng chỉ là vài milisecond và số lượng request chỉ dừng lại ở mức chục ngàn, nhưng với các hệ thống thực tế thì chúng ta có thể cần dùng nhiều channel hơn, thời gian thực hiện I/O cho mỗi request kéo dài hơn và số lượng request là lớn hơn rất nhiều.</p>
+<p>Nếu chúng ta nhìn kỹ ở phần không sử dụng <code>select</code> thì đoạn code đó không thực sự là <code>concurrency</code>, hai channel của chúng ta được đọc một cách tuần tự, mà như các bạn đã biết các channel chỉ có thể được đọc khi nó hoàn tất việc ghi dữ liệu tức là nó sẽ block Gorountine đang sở hữu nó cho tới khi có một hoạt động ghi vào channel đó. Nhìn vào đoạn code trên thì channel 1 luôn được ưu tiên để đọc trước, nên trong một số trường hợp khi thời gian I/O của Gorountine chứa channel 2 thấp hơn dẫn đến channel 2 đã ready để được xử lý nhưng chúng vẫn phải đợi đến khi Gorountine của channel 1 hoàn thành công việc. Đây chính là tình huống mà starvation đã xảy ra tại Goroutine chứa channel 2. Tương tự nếu chúng ta thay đổi thứ tự của cả 2 thì hiện tượng như vậy cũng sẽ xảy ra với Gorountine chứa channel 1. Đây cũng chính là lý do tại sao chúng ta cần sử dụng <code>select</code>.</p>
+<p>Khi sử dụng <code>select</code> bất cứ khi nào một channel nào ready(sẵn sàng để ghi hoặc đọc) trong các channel đang tồn tại trong câu lệnh select, thì ngay lập tức nó sẽ được chọn để tiếp tục handle tiếp tục bởi <code>select</code>. Chính vì thế sẽ gần như sẽ không có idle time , resource cũng được tận dụng hết khả năng và đó mới thật sự là &ldquo;Concurrency&rdquo;.</p>
+<h2 id="2-đào-sâu-thêm-về--select">2. Đào sâu thêm về  select</h2>
+<h3 id="21-khi-các-channel-đều-sẵn-sàng-để-ghi-tại-một-thời-điểm">2.1 Khi các channel đều sẵn sàng để ghi tại một thời điểm</h3>
+<p>Để biểu diễn các channel sẵn sàng để ghi tại một thời điểm, chúng ta sẽ close channel ngay sau khi khởi tạo. Điều này tận dụng việc  channel vẫn có thể được đọc và luôn sẵn sàng để đọc sau khi đóng như yêu cầu.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c1</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">interface</span>{})
+</span></span><span style="display:flex;"><span>	close(<span style="color:#a6e22e">c1</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c2</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">interface</span>{})
+</span></span><span style="display:flex;"><span>	close(<span style="color:#a6e22e">c2</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c3</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">interface</span>{})
+</span></span><span style="display:flex;"><span>	close(<span style="color:#a6e22e">c3</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">c1Count</span>, <span style="color:#a6e22e">c2Count</span>, <span style="color:#a6e22e">c3count</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">3000</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">--</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">select</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c1</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">c1Count</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c2</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">c2Count</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c3</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">c3count</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;c1Count: %d\nc2Count: %d\nc3Count: %d\n&#34;</span>, <span style="color:#a6e22e">c1Count</span>, <span style="color:#a6e22e">c2Count</span>, <span style="color:#a6e22e">c3count</span>)
+</span></span></code></pre></div><p>Kêt quả sau khi thực thi chương trình trên</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>c1Count: <span style="color:#ae81ff">978</span>
+</span></span><span style="display:flex;"><span>c2Count: <span style="color:#ae81ff">999</span>
+</span></span><span style="display:flex;"><span>c3Count: <span style="color:#ae81ff">1024</span>
+</span></span></code></pre></div><p>Kết quả cho thấy 3 biến count có giá trị gần bằng nhau, điều này cho thấy các hoạt động đọc dữ liệu từ channel khi sử dụng <code>select</code> được lựa chọn một cách bình đẳng không có một case nào được ưu tiên hơn. Để làm được điều này Go đã sử dụng một thuật toán uniform pseudo-random để lựa chọn channel tại mỗi thời điểm thay vì chọn từ trên xuống như trong trường hợp của <code>switch case</code>. Nó giúp việc lựa chọn không bị lệch về bất kỳ một Goroutine nào để tránh xảy ra hiện tượng starvation.</p>
+<h3 id="22-khi-tất-cả-các-channel-không-bao-giờ-sẵn-sàng">2.2 Khi tất cả các channel không bao giờ sẵn sàng</h3>
+<p>Trong trường hợp tất cả các channel bị stuck vì một lý do nào đó chúng ta cần có cách để kết thúc việc chờ đợi, mà một cách quen thuộc chính là set một giá trị timeout, với <code>select</code> chúng ta sẽ hiện thực như sau</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">start</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">select</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">After</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Timed out.&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Elapsed time: &#34;</span>, <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Since</span>(<span style="color:#a6e22e">start</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Timed</span> <span style="color:#a6e22e">out</span>.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Time</span> <span style="color:#a6e22e">elapsed</span>:  <span style="color:#ae81ff">1.001240483</span><span style="color:#a6e22e">s</span>
+</span></span></code></pre></div><p><code>time.Afetr()</code> sẽ trả về một read channel sau một khoảng thời gian được truyền vào, ta sẽ dùng nó làm một nhánh lựa chọn trong <code>select</code> để đảm bảo việc timeout của các channel.</p>
+<h3 id="23-khi-chúng-ta-muốn-tận-dụng-thời-gian-mà-tất-cả-các-đều-channel-đang-bận">2.3 Khi chúng ta muốn tận dụng thời gian mà tất cả các đều channel đang bận</h3>
+<p>Đây là lúc <code>default</code> xuất hiện, gần giống với <code>switch</code>, <code>default</code> branch sẽ dược thực thi khi tất cả các channel bị block.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">done</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">interface</span>{})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Do something with a long interval 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    close(<span style="color:#a6e22e">done</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">loop</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">select</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">done</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span> <span style="color:#a6e22e">loop</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//Do something when all channel blocked
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//or Do something here 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span></code></pre></div><h3 id="24-một-số-lưu-ý-khác">2.4 Một số lưu ý khác</h3>
+<ul>
+<li>Câu lệnh <code>select</code> cũng cho phép chúng ta gán giá trị tại từng case có chứa recieve statement bằng &ldquo;short variable declaration&rdquo; ví dụ <code>case s := &lt;-chan1</code>, lúc này giá trị được đọc từ <code>chan1</code> sẽ được gán cho biến <code>s</code>.</li>
+<li>Ngoài ra chúng ta cũng được Go cung cấp cấp câu lệnh select rỗng <code>select{}</code>, nó đơn giản là block Gorountine tương ứng mãi mãi và chỉ kết thúc khi có sự can thiêp bên ngoài. Trong những bài viết kế tiếp về Concurrency trong Go, chúng ta sẽ cùng nhau tìm hiểu kỹ hơn về nó.</li>
+</ul>
+<h2 id="3-kết">3. Kết</h2>
+<p>Qua bài viết này mình đã giới thiệu những khái niệm và cách sử dụng cơ bản về câu lệnh <code>select</code> của Go, một trong những chất liệu quan trọng của mô hình Concurrency của Go</p>
+<h2 id="read-more">Read more</h2>
+<p><a href="https://go.dev/ref/spec#Select_statements">Go Select Statement Specification</a>
+<a href="https://www.amazon.com/Learning-Go-Idiomatic-Real-World-Programming/dp/1492077216#:~:text=Networking%20%26%20Cloud%20Computing-,Learning%20Go%3A%20An%20Idiomatic%20Approach%20to%20Real%2DWorld%20Go%20Programming,-1st%20Edition">Learning Go: An Idiomatic Approach to Real-World Go Programming</a></p>
+<p><a href="https://www.amazon.com/Programming-Language-Addison-Wesley-Professional-Computing/dp/0134190440">Go Programming Language, The (Addison-Wesley Professional Computing Series)</a></p>
+<p><a href="https://www.amazon.com/Concurrency-Go-Tools-Techniques-Developers/dp/1491941197">Concurrency in Go: Tools and Techniques for Developers</a></p>
+
+
+
+        <div class="footer">
+    Powered by <a href="https://gohugo.io/">Hugo</a> with
+    <a href="https://github.com/mrmierzejewski/hugo-theme-console/">Console Theme</a>. 
+</div>
+
+    </div>
+  </body>
+</html>
