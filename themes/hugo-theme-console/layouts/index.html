@@ -25,7 +25,7 @@
             <ul class="tag-list">
                 {{ range .Params.Tags}}
                 <li>
-                    <a href="/tags/{{.}}">#{{ . }}</a>
+                    <a href="/tags/{{ . | lower }}">#{{ . }}</a>
                 </li>
                 {{ end }}
             </ul>
