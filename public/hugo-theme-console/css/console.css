@@ -216,6 +216,16 @@ figure {
     padding-top: 0;
 }
 
+.tag-list .li {
+    display: inline-block !important;
+    background-color: #d7827e;
+    color: #ffffff;
+    padding: 4px 6px;
+    border-radius: 6px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
 @media only screen and (max-width: 850px) {
     .site-name {
         width: 2ch;

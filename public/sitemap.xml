@@ -4,78 +4,85 @@
     
         
         <url>
-            <loc>https://phthaocse.github.io/posts/2022-03-23-cap/</loc>
+            <loc>http://localhost:1313/posts/2022-03-23-cap/</loc>
             <lastmod>2022-03-23T12:00:00+07:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://phthaocse.github.io/posts/</loc>
+            <loc>http://localhost:1313/tags/distributed/</loc>
             <lastmod>2022-03-23T12:00:00+07:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://phthaocse.github.io/tags/</loc>
+            <loc>http://localhost:1313/posts/</loc>
             <lastmod>2022-03-23T12:00:00+07:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://phthaocse.github.io/tags/technology/</loc>
+            <loc>http://localhost:1313/tags/</loc>
             <lastmod>2022-03-23T12:00:00+07:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://phthaocse.github.io/</loc>
+            <loc>http://localhost:1313/tags/technology/</loc>
             <lastmod>2022-03-23T12:00:00+07:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://phthaocse.github.io/posts/2022-03-24-go-interface/</loc>
+            <loc>http://localhost:1313/</loc>
+            <lastmod>2022-03-23T12:00:00+07:00</lastmod>
         </url>
         
     
         
         <url>
-            <loc>https://phthaocse.github.io/posts/2022-04-02-race-condition/</loc>
+            <loc>http://localhost:1313/posts/2022-03-24-go-interface/</loc>
         </url>
         
     
         
         <url>
-            <loc>https://phthaocse.github.io/posts/2022-04-05-go-select/</loc>
+            <loc>http://localhost:1313/posts/2022-04-02-race-condition/</loc>
         </url>
         
     
         
         <url>
-            <loc>https://phthaocse.github.io/posts/2022-06-17-kafka-connector1/</loc>
+            <loc>http://localhost:1313/posts/2022-04-05-go-select/</loc>
         </url>
         
     
         
         <url>
-            <loc>https://phthaocse.github.io/categories/</loc>
+            <loc>http://localhost:1313/posts/2022-06-17-kafka-connector1/</loc>
         </url>
         
     
         
         <url>
-            <loc>https://phthaocse.github.io/posts/2022-01-01-categories/</loc>
+            <loc>http://localhost:1313/categories/</loc>
         </url>
         
     
         
         <url>
-            <loc>https://phthaocse.github.io/categories/technology/</loc>
+            <loc>http://localhost:1313/posts/2022-01-01-categories/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/categories/technology/</loc>
         </url>
         
     
