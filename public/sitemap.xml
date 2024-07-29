@@ -4,6 +4,69 @@
     
         
         <url>
+            <loc>http://localhost:1313/tags/it/</loc>
+            <lastmod>2022-06-17T17:35:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/kafka/</loc>
+            <lastmod>2022-06-17T17:35:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/</loc>
+            <lastmod>2022-06-17T17:35:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/</loc>
+            <lastmod>2022-06-17T17:35:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/</loc>
+            <lastmod>2022-06-17T17:35:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/2022-06-17-kafka-connector1/</loc>
+            <lastmod>2022-06-17T17:35:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/2022-04-05-go-select/</loc>
+            <lastmod>2022-04-05T14:55:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/os/</loc>
+            <lastmod>2022-04-05T14:55:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/2022-04-02-race-condition/</loc>
+            <lastmod>2022-04-02T17:35:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
             <loc>http://localhost:1313/tags/go/</loc>
             <lastmod>2022-03-24T16:55:00+07:00</lastmod>
         </url>
@@ -12,34 +75,6 @@
         
         <url>
             <loc>http://localhost:1313/posts/2022-03-24-go-interface/</loc>
-            <lastmod>2022-03-24T16:55:00+07:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/posts/</loc>
-            <lastmod>2022-03-24T16:55:00+07:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/tags/</loc>
-            <lastmod>2022-03-24T16:55:00+07:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/tags/technology/</loc>
-            <lastmod>2022-03-24T16:55:00+07:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/</loc>
             <lastmod>2022-03-24T16:55:00+07:00</lastmod>
         </url>
         
@@ -55,30 +90,6 @@
         <url>
             <loc>http://localhost:1313/tags/distributed/</loc>
             <lastmod>2022-03-23T12:00:00+07:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/posts/2022-04-02-race-condition/</loc>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/posts/2022-04-05-go-select/</loc>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/posts/2022-06-17-kafka-connector1/</loc>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/posts/2022-01-01-categories/</loc>
         </url>
         
     

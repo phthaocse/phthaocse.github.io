@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OS on Thao Phan Posts</title>
+    <link>http://localhost:1313/tags/os/</link>
+    <description>Recent content in OS on Thao Phan Posts</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 Apr 2022 14:55:00 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/os/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Concurrency - Select statement</title>
+      <link>http://localhost:1313/posts/2022-04-05-go-select/</link>
+      <pubDate>Tue, 05 Apr 2022 14:55:00 +0700</pubDate>
+      <guid>http://localhost:1313/posts/2022-04-05-go-select/</guid>
+      <description>Câu lệnh &lt;code&gt;select&lt;/code&gt; trong Go có thể được xem là một trong những câu lệnh quan trọng mà Gopher cần phải nắm rõ khi làm việc với concurrency programing. Nó được xem như chất kết dính gắn kết các channel lại với nhau, đồng thời từ đó kiểm soát và giải quyết những vấn đề phổ biến trong mô hình concurrency của Go.</description>
+    </item>
+  </channel>
+</rss>
