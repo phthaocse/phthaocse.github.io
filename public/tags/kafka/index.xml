@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kafka on Thao Phan Posts</title>
-    <link>http://localhost:1313/tags/kafka/</link>
+    <link>https://phthaocse.github.io/tags/kafka/</link>
     <description>Recent content in Kafka on Thao Phan Posts</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 17 Jun 2022 17:35:00 +0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/kafka/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://phthaocse.github.io/tags/kafka/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Xây dựng data pipeline với Kafka connector</title>
-      <link>http://localhost:1313/posts/2022-06-17-kafka-connector1/</link>
+      <link>https://phthaocse.github.io/posts/2022-06-17-kafka-connector1/</link>
       <pubDate>Fri, 17 Jun 2022 17:35:00 +0700</pubDate>
-      <guid>http://localhost:1313/posts/2022-06-17-kafka-connector1/</guid>
+      <guid>https://phthaocse.github.io/posts/2022-06-17-kafka-connector1/</guid>
       <description>Trong các hệ thống hiện đại ngày nay, khi dữ liệu và dữ liệu là vô hạn thì việc xây dựng hệ thống truyền tải và chuyển hoá dữ liệu đóng vai trò rất quan trọng.</description>
     </item>
   </channel>
