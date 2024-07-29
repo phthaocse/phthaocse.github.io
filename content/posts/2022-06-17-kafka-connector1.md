@@ -1,8 +1,9 @@
 ---
-date: 2022-06-17 17:35
+title: Xây dựng data pipeline với Kafka connector 
+date: 2022-06-17T17:35:00+07:00
 layout: post
-description: Trong các hệ thống hiện đại ngày nay, khi dữ liệu và dữ liệu là vô hạn thì việc xây dựng hệ thống truyền tải và chuyển hoá dữ liệu đóng vai trò rất quan trọng.
-tags:  ["Technology"]
+summary: Trong các hệ thống hiện đại ngày nay, khi dữ liệu và dữ liệu là vô hạn thì việc xây dựng hệ thống truyền tải và chuyển hoá dữ liệu đóng vai trò rất quan trọng.
+tags:  ["IT", "Kafka"]
 categories: [Technology]
 ---
 # Xây dựng data pipeline với Kafka connector - Phần 1: Data Pipeline

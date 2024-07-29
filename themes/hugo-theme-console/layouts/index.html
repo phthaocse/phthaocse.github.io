@@ -3,7 +3,11 @@
 <h1>About</h1>
 
 <p>
-Console is a minimal, responsive and light theme for Hugo inspired by Linux console.  <a href="about/">(more)</a>
+    Nơi để mình lưu trữ những kiến thức đã học và đọc được trong quá trình làm việc hoặc học tập.
+    Đa số sẽ là kiến thức về tech và đôi khi là các lĩnh vực khác.
+    Vì đây là nơi mình tự tổng hợp, nên không đảm bảo về tính chính xác và đúng đắn tại mọi thời điểm,
+    chỉ dùng với mục đích tham khảo và rất vui nếu nó có thể cung cấp thêm cho mọi người keywords mới
+    hoặc insight gì đó hay ho.
 </p>
 <br/>
 
@@ -11,7 +15,7 @@ Console is a minimal, responsive and light theme for Hugo inspired by Linux cons
 
 <div class="posts-list">
 {{ with .Site.GetPage "/posts" }}
-    {{ range first 3 (sort .Data.Pages "Date" "desc" (where .Pages ".Params.private" "!=" true))}}
+    {{ range first 10 (sort .Data.Pages "Date" "desc" (where .Pages ".Params.private" "!=" true))}}
         <div class="post">
             <p>
                 <div class="date">{{ .PublishDate.Format "Jan. 2, 2006" }}</div>
@@ -21,7 +25,7 @@ Console is a minimal, responsive and light theme for Hugo inspired by Linux cons
             <ul class="tag-list">
                 {{ range .Params.Tags}}
                 <li>
-                    <a href="/test">#{{ . }}</a>
+                    <a href="/tags/{{.}}">#{{ . }}</a>
                 </li>
                 {{ end }}
             </ul>

@@ -6,49 +6,42 @@
     <description>Recent content on Thao Phan Posts</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Mar 2022 12:00:00 +0700</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jun 2022 17:35:00 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Xây dựng data pipeline với Kafka connector</title>
+      <link>http://localhost:1313/posts/2022-06-17-kafka-connector1/</link>
+      <pubDate>Fri, 17 Jun 2022 17:35:00 +0700</pubDate>
+      <guid>http://localhost:1313/posts/2022-06-17-kafka-connector1/</guid>
+      <description>Trong các hệ thống hiện đại ngày nay, khi dữ liệu và dữ liệu là vô hạn thì việc xây dựng hệ thống truyền tải và chuyển hoá dữ liệu đóng vai trò rất quan trọng.</description>
+    </item>
+    <item>
+      <title>Go Concurrency - Select statement</title>
+      <link>http://localhost:1313/posts/2022-04-05-go-select/</link>
+      <pubDate>Tue, 05 Apr 2022 14:55:00 +0700</pubDate>
+      <guid>http://localhost:1313/posts/2022-04-05-go-select/</guid>
+      <description>Câu lệnh &lt;code&gt;select&lt;/code&gt; trong Go có thể được xem là một trong những câu lệnh quan trọng mà Gopher cần phải nắm rõ khi làm việc với concurrency programing. Nó được xem như chất kết dính gắn kết các channel lại với nhau, đồng thời từ đó kiểm soát và giải quyết những vấn đề phổ biến trong mô hình concurrency của Go.</description>
+    </item>
+    <item>
+      <title>Race Condition</title>
+      <link>http://localhost:1313/posts/2022-04-02-race-condition/</link>
+      <pubDate>Sat, 02 Apr 2022 17:35:00 +0700</pubDate>
+      <guid>http://localhost:1313/posts/2022-04-02-race-condition/</guid>
+      <description>Race condition là tình huống một hay nhiều thread cùng cố gắng thay đổi giá trị của một biến trong vùng nhớ chung (shared memory) tại cùng một thời điểm, kết quả của việc thực thi phụ thuộc vào thứ tự cụ thể mà việc truy cập diễn ra, và thứ tự truy cập đó ta không thể kiểm soát. Điều này có thể dẫn đến kết quả không mong muốn của toàn bộ quá trình.</description>
+    </item>
+    <item>
+      <title>Go Interface</title>
+      <link>http://localhost:1313/posts/2022-03-24-go-interface/</link>
+      <pubDate>Thu, 24 Mar 2022 16:55:00 +0700</pubDate>
+      <guid>http://localhost:1313/posts/2022-03-24-go-interface/</guid>
+      <description>Giống như các ngôn ngữ lập trình khác, nơi mà chúng ta đều có thể tìm kiếm những khái niệm liên quan đến &amp;ldquo;Interface&amp;rdquo;, với những ngôn ngữ hướng đối tượng kiểu tĩnh như Java, C# … thì cũng chính là interface, với những ngôn ngữ kiểu động thì có một khái niệm gần sát là “Duck Tying&amp;quot;. Go interface cũng mang trong mình những đặc tính đó, nếu hiểu interface trong Java là &amp;ldquo;explicit interface&amp;rdquo; thì đối với Go nó là &amp;ldquo;implicit interface&amp;rdquo;, trên hệ quy chiếu của các ngôn ngữ kiểu động thì có thể gọi Go Interface là Type-Safe Duck Typing. Điều đó nói lên điều gì ? Go không nghiêng về hẳn về một bên nào, mà ngược lại như một kẻ trung lập đứng ở giữa và chấp nhận quan điểm của cả hai trường phái, điều đó giúp cho Interface trong Go trở nên thật mạnh mẽ nhưng cũng thật tao nhã.</description>
+    </item>
     <item>
       <title>CAP theorem</title>
       <link>http://localhost:1313/posts/2022-03-23-cap/</link>
       <pubDate>Wed, 23 Mar 2022 12:00:00 +0700</pubDate>
       <guid>http://localhost:1313/posts/2022-03-23-cap/</guid>
-      <description>test</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/posts/2022-03-24-go-interface/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2022-03-24-go-interface/</guid>
-      <description>GO INTERFACE Giống như các ngôn ngữ lập trình khác, nơi mà chúng ta đều có thể tìm kiếm những khái niệm liên quan đến “Interface&amp;quot;, với những ngôn ngữ hướng đối tượng kiểu tĩnh như Java, C# … thì cũng chính là interface, với những ngôn ngữ kiểu động thì có một khái niệm gần sát là “Duck Tying&amp;quot;. Go interface cũng mang trong mình những đặc tính đó, nếu hiểu interface trong Java là “explicit interface&amp;quot; thì đối với Go nó là “implicit interface&amp;quot;, trên hệ quy chiếu của các ngôn ngữ kiểu động thì có thể gọi Go Interface là Type-Safe Duck Typing.</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/posts/2022-04-02-race-condition/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2022-04-02-race-condition/</guid>
-      <description>Race condition là gì ? Định nghĩa Race condition là tình huống một hay nhiều thread cùng cố gắng thay đổi giá trị của một biến trong vùng nhớ chung (shared memory) tại cùng một thời điểm, kết quả của việc thực thi phụ thuộc vào thứ tự cụ thể mà việc truy cập diễn ra, và thứ tự truy cập đó ta không thể kiểm soát. Điều này có thể dẫn đến kết quả không mong muốn của toàn bộ quá trình.</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/posts/2022-04-05-go-select/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2022-04-05-go-select/</guid>
-      <description>Go Concurrency - Select Statement Câu lệnh select trong Go có thể được xem là một trong những câu lệnh quan trọng mà Gopher cần phải nắm rõ khi làm việc với concurrency programing. Nó được xem như chất kết dính gắn kết các channel lại với nhau, đồng thời từ đó kiểm soát và giải quyết những vấn đề phổ biến trong mô hình concurrency của Go.&#xA;1. Select statement là gì ?</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/posts/2022-06-17-kafka-connector1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2022-06-17-kafka-connector1/</guid>
-      <description>Xây dựng data pipeline với Kafka connector - Phần 1: Data Pipeline Hôm nay chúng ta sẽ tìm hiểu về Kafka connector và cách Kafka connector được dùng để xây dựng data pipeline trong các hệ thống phần mềm hiện đại&#xA;Data pipeline và những điều cần biết Xây dựng data pipeline là một chủ đề và lĩnh vực khá rộng, nên trong phần này chúng ta chỉ tìm hiểu những khía cạnh quan trọng và có liên quan đến quyết định sử dụng Kafka connector</description>
-    </item>
-    <item>
-      <title>Categories</title>
-      <link>http://localhost:1313/posts/2022-01-01-categories/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2022-01-01-categories/</guid>
-      <description> </description>
+      <description>Khi thiết kế hệ thống phân tán (distributed system) có một định lý nền tảng quan trọng đó là CAP theorem. Trong bài viết này chúng ta cùng tìm hiểu về các khía cạnh này của định lý này.</description>
     </item>
   </channel>
 </rss>

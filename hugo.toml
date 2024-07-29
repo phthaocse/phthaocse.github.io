@@ -4,3 +4,5 @@ title = 'Thao Phan Posts'
 theme = ['hugo-theme-console']
 [params]
     custom_css = ['/Users/thaophan/Learning/phthaocse.github.io/assets']
+[taxonomies]
+  tag = "tags"

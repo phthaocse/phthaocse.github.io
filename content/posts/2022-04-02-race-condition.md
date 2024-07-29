@@ -1,10 +1,10 @@
 ---
-date: 2022-04-02 17:35
+title: Race Condition
+date: 2022-04-02T17:35:00+07:00
 layout: post
-description: Concurrency Problems - Race condition
-tags:  ["Technology"]
+summary: Race condition là tình huống một hay nhiều thread cùng cố gắng thay đổi giá trị của một biến trong vùng nhớ chung (shared memory) tại cùng một thời điểm, kết quả của việc thực thi phụ thuộc vào thứ tự cụ thể mà việc truy cập diễn ra, và thứ tự truy cập đó ta không thể kiểm soát. Điều này có thể dẫn đến kết quả không mong muốn của toàn bộ quá trình.
+tags:  ["IT"]
 categories: [Technology]
-
 ---
 # Race condition là gì ?
 

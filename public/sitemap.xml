@@ -4,6 +4,48 @@
     
         
         <url>
+            <loc>http://localhost:1313/tags/go/</loc>
+            <lastmod>2022-03-24T16:55:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/2022-03-24-go-interface/</loc>
+            <lastmod>2022-03-24T16:55:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/posts/</loc>
+            <lastmod>2022-03-24T16:55:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/</loc>
+            <lastmod>2022-03-24T16:55:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/tags/technology/</loc>
+            <lastmod>2022-03-24T16:55:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:1313/</loc>
+            <lastmod>2022-03-24T16:55:00+07:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
             <loc>http://localhost:1313/posts/2022-03-23-cap/</loc>
             <lastmod>2022-03-23T12:00:00+07:00</lastmod>
         </url>
@@ -13,40 +55,6 @@
         <url>
             <loc>http://localhost:1313/tags/distributed/</loc>
             <lastmod>2022-03-23T12:00:00+07:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/posts/</loc>
-            <lastmod>2022-03-23T12:00:00+07:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/tags/</loc>
-            <lastmod>2022-03-23T12:00:00+07:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/tags/technology/</loc>
-            <lastmod>2022-03-23T12:00:00+07:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/</loc>
-            <lastmod>2022-03-23T12:00:00+07:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/posts/2022-03-24-go-interface/</loc>
         </url>
         
     
@@ -70,19 +78,7 @@
     
         
         <url>
-            <loc>http://localhost:1313/categories/</loc>
-        </url>
-        
-    
-        
-        <url>
             <loc>http://localhost:1313/posts/2022-01-01-categories/</loc>
-        </url>
-        
-    
-        
-        <url>
-            <loc>http://localhost:1313/categories/technology/</loc>
         </url>
         
     

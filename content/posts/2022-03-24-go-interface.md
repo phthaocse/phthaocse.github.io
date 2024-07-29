@@ -1,9 +1,10 @@
 ---
-date: 2022-03-24 16:55
+title: Go Interface
+date:  2022-03-24T16:55:00+07:00
 layout: post
 description: Go interface - The distinction makes the power and grace of Go
-tags:  ["Technology"]
-categories: [Technology]
+tags:  ["IT", "Go"]
+summary: Giống như các ngôn ngữ lập trình khác, nơi mà chúng ta đều có thể tìm kiếm những khái niệm liên quan đến "Interface", với những ngôn ngữ hướng đối tượng kiểu tĩnh như Java, C# … thì cũng chính là interface, với những ngôn ngữ kiểu động thì có một khái niệm gần sát là “Duck Tying". Go interface cũng mang trong mình những đặc tính đó, nếu hiểu interface trong Java là "explicit interface" thì đối với Go nó là "implicit interface", trên hệ quy chiếu của các ngôn ngữ kiểu động thì có thể gọi Go Interface là Type-Safe Duck Typing. Điều đó nói lên điều gì ? Go không nghiêng về hẳn về một bên nào, mà ngược lại như một kẻ trung lập đứng ở giữa và chấp nhận quan điểm của cả hai trường phái, điều đó giúp cho Interface trong Go trở nên thật mạnh mẽ nhưng cũng thật tao nhã.
 ---
 # GO INTERFACE
 

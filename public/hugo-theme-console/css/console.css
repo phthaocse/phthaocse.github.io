@@ -44,7 +44,7 @@
 @media only screen and (max-width: 850px) {
     :root {
         --global-font-size: 14px;
-        --global-font-color: #575279;
+        --global-font-color: #56949f;
         --global-line-height: 1.6em;
         --page-width: 70em;
     }
@@ -92,9 +92,11 @@ h6,
 .h6 {
     font-family: var(--font-stack);
     clear: both;
-    color: #575279 !important;
+    /*color: #575279 !important;*/
 }
-
+div>p{
+    color: var(--font-color)
+}
 h1 {
     margin-bottom: 150px;
 }
@@ -102,6 +104,10 @@ h1 {
 .content-column-content p,
 .content-column-content li {
     color: #56949f;
+}
+
+h1>a {
+   color: var(--font-color);
 }
 
 .btn-ghost {
@@ -195,9 +201,13 @@ figure {
     margin-bottom: 10px;
 }
 
+.post {
+    margin-left: 15px;
+}
+
 .posts-list {
     position: relative;
-    padding-left: 130px;
+    padding-left: 120px;
     top: 0;
 }
 
