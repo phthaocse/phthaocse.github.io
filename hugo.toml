@@ -6,3 +6,6 @@ theme = ['hugo-theme-console']
     custom_css = ['/Users/thaophan/Learning/phthaocse.github.io/assets']
 [taxonomies]
   tag = "tags"
+[[module.mounts]]
+  source = 'images'
+  target = 'static/images'
