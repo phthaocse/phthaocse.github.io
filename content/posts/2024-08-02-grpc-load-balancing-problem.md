@@ -8,7 +8,6 @@ draft: false
 author: "Thao Phan"
 ---
 
-# gRPC/HTTP2 Load Balancing Problem
 ## 1. How k8s Service actually handle request load balancing ?
 
 Corresponding to k8s official document:
