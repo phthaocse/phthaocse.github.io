@@ -9,7 +9,7 @@ author: "Thao Phan"
 ---
 Abstract
 
-As we know, when we use gRPC-based service, it will have a problem about load balancing if we use a L4 load balancing (connection-based load balancing) approach (https://phthaocse.github.io/posts/2024-08-02-grpc-load-balancing-problem/).  To solve this problem, we need a different way to achieve load balancing goal by using L7 load balancing (application/request based load balancing). There are a couple of ways to implement L7 load balancing, such as using a headless service, or using proxy, service mesh like Envoy, Istio, Linkerd. Beside these approaches, we have another mechanism which is officially support by gRPC team called xDS-Based Global Load Balancing (https://github.com/grpc/proposal/blob/master/A27-xds-global-load-balancing.md).
+As we know, when we use gRPC-based service, it will have a [problem about load balancing](https://phthaocse.github.io/posts/2024-08-02-grpc-load-balancing-problem/) if we use a L4 load balancing (connection-based load balancing) approach.  To solve this problem, we need a different way to achieve load balancing goal by using L7 load balancing (application/request based load balancing). There are a couple of ways to implement L7 load balancing, such as using a headless service, or using proxy, service mesh like Envoy, Istio, Linkerd. Beside these approaches, we have another mechanism which is officially support by gRPC team called [xDS-Based Global Load Balancing](https://github.com/grpc/proposal/blob/master/A27-xds-global-load-balancing.md).
 
 # 1. What is xDS ?
 
