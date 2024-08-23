@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+participant "gRPC Client" as gc
+participant "xDS Server" as xds
+autonumber
+
+== Initialize ADS stream to request and receive resources ==
+group#8cbed6 #bfefff LDS
+gc -> xds: LDS request for listener "payment-lis"
+xds -> gc: LDS response with API Listener "payment-lis". The resource must contain a Route for the RDS request.
+end
+
+group#ffc57d #fed4bc RDS
+gc -> xds: RDS request with the Route name provided in the previous listener resource
+gc <- xds: RDS response with Cluster name
+end
+
+group#9696fd #ccccff CDS
+gc -> xds: CDS request based on the cluster name obtained from the RDS response
+gc <- xds: CDS response containing cluster type, `eds_cluster_config`, and load balancing policy
+end
+
+note over gc
+The gRPC Client uses the information
+from the CDS resource to create a load balancing configuration.
+end note
+
+group#ffa7b4 #ffcbd2 EDS
+gc -> xds: EDS request using the cluster name or `eds_cluster_config`
+gc <- xds: EDS response with a list of destination endpoints for gRPC servers
+end
+
+note over gc
+The gRPC Client selects an endpoint
+to connect to the gRPC server.
+end note
+@enduml
