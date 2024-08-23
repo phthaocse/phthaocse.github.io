@@ -24,7 +24,7 @@
             </p>
             <ul class="tag-list">
                 {{ range .Params.Tags}}
-                <li>
+                <li style="display: inline">
                     <a href="/tags/{{ . | lower }}">#{{ . }}</a>
                 </li>
                 {{ end }}
